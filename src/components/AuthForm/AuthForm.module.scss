@@ -1,0 +1,48 @@
+
+.formWrapper{
+    padding: 50px 0;
+    max-width: 390px;
+    width: 100%;
+}
+
+.form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 80%;
+    padding: 90px 40px;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.checkbox {
+    position: relative;
+    cursor: pointer;
+}
+
+span {
+    &:first-child{
+        font-weight: 400;
+        }
+    &:last-child{
+        font-weight: 700;
+    }
+}
+
+.active  {
+    span:first-child{
+        font-weight: 700;
+    }
+    span:last-child{
+        font-weight: 400;
+    }
+    
+}
+

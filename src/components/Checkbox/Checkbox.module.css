@@ -1,0 +1,44 @@
+
+.label{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.inputBox{
+
+}
+
+.checkbox {
+    border-radius: 30px;
+    height: 24px;
+    transition: .2s;
+    width: 50px;
+    background-color: #4d4d4d;
+    position: relative;
+    cursor: pointer;
+}
+
+.checkboxCircle {
+    background-color: #fafafa;
+    border: 1px solid #4d4d4d;
+    border-radius: 50%;
+    height: 22px;
+    width: 22px;
+    transition: .25s;
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    left: 5%;
+    z-index: 2;
+}
+
+.checkboxCircle:hover{
+    box-shadow: 0px 0px 2px 2px #e50914;
+}
+  
+.active  .checkboxCircle{
+    left: calc(95% - 22px);
+}
+
+
