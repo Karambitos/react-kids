@@ -1,0 +1,28 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+
+.dayList{
+    @include reset-list;
+    width: 100%;
+    margin: auto 0 auto 48px
+}
+
+.dayItem {
+    background-color: $color-light-orange;
+    margin-bottom: 4px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-weight: 700;
+}
+
+.active{
+    background-color: $color-white;
+}
+
+.dayButton {
+    @include reset-button;
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+}

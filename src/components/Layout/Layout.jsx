@@ -4,7 +4,7 @@ import AppBar from '../AppBar/AppBar';
 
 export default function Layout() {
   return (
-    <div className="mainContainer">
+    <div className="containerRoot">
       <AppBar />
       <Suspense fallback={'...Loading'}>
         <Outlet />

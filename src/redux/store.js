@@ -11,23 +11,14 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-// import { transactionsReducer } from './transactions/slice';
-
 import authReduser from './auth/slice';
-
-// import { currencyReducer } from './currency/slice';
+import tasksSlice from './tasks/slice';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
-
-// const currencyPersistConfig = {
-//   key: 'currency',
-//   storage,
-//   whitelist: ['lastActionTime', 'currencies'],
-// };
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -40,6 +31,7 @@ const middleware = [
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReduser),
+    tasks: tasksSlice,
   },
   middleware,
 });

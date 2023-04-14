@@ -1,0 +1,15 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.daysList {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $color-blue;
+    border-radius: 6px;
+    padding: 15px 20px;
+
+    ul{
+        @include reset-list
+    }
+}

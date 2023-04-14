@@ -1,6 +1,20 @@
+import { useState } from 'react';
+import CardList from '../components/CardList/CardList';
+import WeekTabContent from '../components/WeekTabContent/WeekTabContent';
+import WeekTabs from '../components/WeekTabs/WeekTabs';
+
 const Home = () => {
+  const [currentDay, setCurrentDay] = useState(
+    new Date().toJSON().slice(0, 10)
+  );
+
   return (
-    <h1>Hello Kids</h1>
+    <div className="asideWrapper contentMaxWidth">
+      <WeekTabs currentDay={currentDay} />
+      <WeekTabContent>
+        <CardList currentDay={currentDay} />
+      </WeekTabContent>
+    </div>
   );
 };
 

@@ -1,28 +1,22 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-// import { ToastContainer } from 'react-toastify';
-// import { MobileRoute } from 'hoc/MobileRoute';
 import { PrivateRoute } from '../hoc/PrivateRoute';
 import { PublicRoute } from '../hoc/PublicRoute';
-
+import { useDispatch } from 'react-redux';
+import { refreshUser } from '../redux/auth/operations';
 import Layout from './Layout/Layout';
-// import Loader from './Loader/Loader';
-
 import '../main.scss';
 
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getCurrentUser } from 'redux/auth/authThunks';
-// import { getIsRefreshing } from 'redux/auth/authSelectors';
-// import CurrencyMob from 'pages/Currencymob';
-
 const Home = lazy(() => import('../pages/Home'));
-// const Statistics = lazy(() => import('pages/Statistics'));
+const Planning = lazy(() => import('../pages/Planning'));
 const AuthPage = lazy(() => import('../pages/AuthPage'));
-// const RegisterPage = lazy(() => import('pages/RegisterPage'));
-// const BaseStyle = lazy(() => import('pages/BaseStyle'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, []);
   return (
     <Suspense fallback={'...Loading'}>
       <Routes>
@@ -30,6 +24,12 @@ export default function App() {
           <Route
             path="/"
             element={<PrivateRoute redirectTo="/auth" component={<Home />} />}
+          />
+          <Route
+            path="/planning"
+            element={
+              <PrivateRoute redirectTo="/auth" component={<Planning />} />
+            }
           />
           <Route
             path="/auth"

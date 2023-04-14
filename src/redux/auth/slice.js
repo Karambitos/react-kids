@@ -1,23 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 
-import {
-  getCurrentUser,
-  getUserBalance,
-  loginUser,
-  logoutUser,
-  registerUser,
-} from './operations';
+import { loginUser, logoutUser, registerUser, refreshUser } from './operations';
+// import { switchProgress } from '../tasks/operations';
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    data: {
-      user: {
-        email: 'user@example.com',
-        id: '507f1f77bcf86cd799439012',
-        balance: 5,
-      },
-      week: {},
+    user: {
+      email: '',
+      id: '',
+      balance: 0,
     },
     token: null,
     isLoading: true,
@@ -27,31 +20,36 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.data.user = action.payload.user;
-        state.data.week = action.payload.week;
+        state.user = action.payload.user;
         state.token = action.payload.token;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.data.user = action.payload.user;
-        state.data.week = action.payload.week;
+        state.user = action.payload.user;
         state.token = action.payload.token;
+      })
+      .addCase(logoutUser.fulfilled, state => {
+        state.user = {
+          email: '',
+          id: '',
+          balance: 0,
+        };
+        state.token = null;
+        console.log(state);
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.pending, (state, action) => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.rejected, (state, action) => {
+        state.isRefreshing = false;
       });
-    // .addCase(logOut.fulfilled, state => {
-    //   state.user = null;
-    //   state.email = null;
+    // .addCase(switchProgress.fulfilled, state => {
+    //   state.data.week. = initData;
     //   state.token = null;
-    //   state.isLoggedIn = false;
-    // })
-    // .addCase(refreshUser.fulfilled, (state, action) => {
-    //   state.user = action.payload;
-    //   state.isLoggedIn = true;
-    //   state.isRefreshing = false;
-    // })
-    // .addCase(refreshUser.pending, (state, action) => {
-    //   state.isRefreshing = true;
-    // })
-    // .addCase(refreshUser.rejected, (state, action) => {
-    //   state.isRefreshing = false;
+    //   console.log(state);
     // })
     // .addMatcher(
     //   action => action.type.endsWith('/pending'),

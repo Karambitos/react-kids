@@ -65,11 +65,10 @@ body {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  color: $color-text;
+  color: $text-color-black;
   font-family: 'Montserrat', sans-serif;
   @include font-size(16, 24);
   font-weight: 400;
-  background-color: $colorBG;
 }
 
 #{$heading-selectors} {
@@ -128,7 +127,7 @@ h6,
   @include font-size(16, 18);
 }
 
-.mainContainer{
+.containerRoot {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -140,70 +139,52 @@ h6,
   margin: 0 auto;
 }
 
-// .aside {
-//   width: 100%;
-//   margin-top: 12px;
-//   @media (min-width: $breakpoint-tablet) {
-//     margin-top: 32px;
-//   }
-//   @media (min-width: $breakpoint-desktop) {
-//     margin-top: 0;
-//     max-width: 394px;
-//     position: relative;
-//     &:before {
-//       content: '';
-//       width: 2px;
-//       height: 100%;
-//       box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
-//         1px 0px 0px rgba(255, 255, 255, 0.6);
-//       display: block;
-//       position: absolute;
-//       top: 0;
-//       right: -69px;
-//     }
-//   }
-// }
+.asideWrapper {
+  align-items: stretch;
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 0 20px;
+  position: relative;
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
+}
 
-// .aside,
-// .main {
-//   display: flex;
-//   height: auto;
-//   gap: 30px;
-//   // padding: 12px 0;
-//   flex-direction: column;
-//   align-items: stretch;
-//   z-index: 2;
+.aside {
+  width: 100%;
+  background-color: $color-orange;
+  overflow: hidden;
+  @media (min-width: $breakpoint-tablet) {
+    max-width: 230px;
+  }
+}
 
-//   @media (min-width: $breakpoint-tablet) {
-//     flex-direction: row;
-//   }
+.aside,
+.main {
+  display: flex;
+  height: auto;
+  gap: 30px;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 2;
 
-//   @media (min-width: $breakpoint-desktop) {
-//     padding: 45px 0;
-//     flex-direction: column;
-//   }
-// }
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
 
-// .main {
-//   width: 100%;
-//   position: relative;
-//   overflow: hidden;
-// }
+  @media (min-width: $breakpoint-desktop) {
+    padding: 45px 0;
+    flex-direction: column;
+  }
+}
 
-// .custom-toast {
-//   color: $white;
-//   background-color: $mainColor;
-//   border-radius: 5px;
-//   font-size: 18px;
-//   font-weight: bold;
-//   padding: 15px;
-//   fill: $white;
-// }
-
-
-// .Toastify__progress-bar--success {
-//   background: $mainColor;
-// }
+.main {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
 
 /* Class for text that should only be visible to screen readers */
 
@@ -250,15 +231,15 @@ h6,
 //   border: 1px solid;
 
 //   color: $white;
-//   background-color: $mainColor;
-//   border-color: $mainColor;
+//   background-color: $color-orange;
+//   border-color: $color-orange;
 
 //   &:hover,
 //   &:focus,
 //   &:active {
 //     color: $colorPink;
 //     background-color: transparent;
-//     border-color: $mainColor;
+//     border-color: $color-orange;
 //   }
 
 //   &:disabled,
@@ -275,8 +256,8 @@ h6,
 //     &:hover,
 //     &:focus,
 //     &:active {
-//       color: $mainColor;
-//       border-color: $mainColor;
+//       color: $color-orange;
+//       border-color: $color-orange;
 //     }
 //   }
 
