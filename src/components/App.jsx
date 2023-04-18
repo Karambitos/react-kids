@@ -2,11 +2,10 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateRoute } from '../hoc/PrivateRoute';
 import { PublicRoute } from '../hoc/PublicRoute';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
 import Layout from './Layout/Layout';
 import '../main.scss';
-
 const Home = lazy(() => import('../pages/Home'));
 const Planning = lazy(() => import('../pages/Planning'));
 const AuthPage = lazy(() => import('../pages/AuthPage'));
@@ -17,6 +16,7 @@ export default function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, []);
+
   return (
     <Suspense fallback={'...Loading'}>
       <Routes>

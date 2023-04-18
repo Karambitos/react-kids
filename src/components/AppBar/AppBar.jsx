@@ -7,7 +7,6 @@ import { logoutUser } from '../../redux/auth/operations';
 import SVGComponent from '../../assets/exitIcon';
 // import { ReactComponent as Logout } from '../../assets/svg/logout.svg';
 // import { ReactComponent as Divider } from '../../assets/svg/divider.svg';
-
 // import { LogoutBtn } from 'components/logoutBtn/logoutBtn';
 // import { useSelector } from 'react-redux';
 

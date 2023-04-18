@@ -36,6 +36,10 @@
 .checkboxCircle:hover{
     box-shadow: 0px 0px 2px 2px #e50914;
 }
+
+.disabled{
+    background-color: red;
+}
   
 .active  .checkboxCircle{
     left: calc(95% - 22px);

@@ -1,25 +1,16 @@
 import CardListItem from '../CardListItem/CardListItem';
 import styles from './CardList.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { getFilterTasks, getTasks } from '../../redux/tasks/selectors';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getFilterTasks, getTasks } from '../../redux/tasks/selectors';
 
-export default function CardList({ currentDay = null }) {
-  const tasks = useSelector(getTasks);
-  const filteredTasks = useSelector(getFilterTasks);
-
-  // const filteredArray = tasks.filter(obj => {
-  //   const matchingDay = obj.days.find(
-  //     day => day.date === currentDay && day.isActive
-  //   );
-  //   return !!matchingDay;
-  // });
-  // console.log(filteredArray);
-
+export default function CardList({ tasks, planning = false }) {
   return (
     <ul className={styles.cardList}>
       {tasks &&
         tasks.map(task => {
-          return <CardListItem key={task._id} task={task} />;
+          return (
+            <CardListItem key={task._id} task={task} planning={planning} />
+          );
         })}
     </ul>
   );

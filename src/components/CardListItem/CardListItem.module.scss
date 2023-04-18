@@ -31,7 +31,16 @@
     }
 }
 
-// .cardItemImage:hover {
-//     transform: scale(1.03);
-//     cursor: zoom-in;
-// }
+.cardStatus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: $color-red;
+    border-radius: 50%;
+
+    &.isCompleted {
+        background-color: $color-green;
+    }
+}

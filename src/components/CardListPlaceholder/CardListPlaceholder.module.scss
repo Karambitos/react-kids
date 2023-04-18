@@ -1,0 +1,43 @@
+@import '../../scss/variables';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.image{
+    margin-top: auto;
+
+    img{
+        width: 100%;
+    }
+}
+
+.button{
+    margin: 20px auto 0;
+    background-color: $color-orange;
+    color: $text-color-white;
+    text-decoration: none;
+    font-weight: 700;
+    height: 48px;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px 0 rgba(29,29,27,.15);
+    cursor: pointer;
+    padding: 10px 33px;
+    transition: background-color 300ms, color 300ms;
+
+    &:hover,
+    &:focus{
+        background-color: $color-light-orange;
+        color: $text-color-black;
+    }
+}

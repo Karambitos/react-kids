@@ -3,16 +3,22 @@ import CardList from '../components/CardList/CardList';
 import WeekTabContent from '../components/WeekTabContent/WeekTabContent';
 import WeekTabs from '../components/WeekTabs/WeekTabs';
 
-const Home = () => {
-  const [currentDay, setCurrentDay] = useState(
-    new Date().toJSON().slice(0, 10)
-  );
+import { getCurrentDate, getFilterTasks } from '../redux/tasks/selectors';
+import { useSelector } from 'react-redux';
+import CardListPlaceholder from '../components/CardListPlaceholder/CardListPlaceholder';
 
+const Home = () => {
+  const currentDate = useSelector(getCurrentDate);
+  const filteredTasks = useSelector(getFilterTasks);
   return (
     <div className="asideWrapper contentMaxWidth">
-      <WeekTabs currentDay={currentDay} />
+      <WeekTabs currentDate={currentDate} />
       <WeekTabContent>
-        <CardList currentDay={currentDay} />
+        {filteredTasks.length > 0 ? (
+          <CardList tasks={filteredTasks} />
+        ) : (
+          <CardListPlaceholder />
+        )}
       </WeekTabContent>
     </div>
   );

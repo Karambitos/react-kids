@@ -10,6 +10,7 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await axios.post(`/auth/register`, credentials);
       setAuthHeader(response.data.token);
+      // console.log(response.data.week.startWeekDate);
       dispatch(getTasks(response.data.week));
       return response.data;
     } catch (error) {
@@ -23,6 +24,7 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post('/auth/login', credentials);
       setAuthHeader(response.data.token);
+      // console.log(response.data.week.startWeekDate);
       dispatch(getTasks(response.data.week));
       return response.data;
     } catch (error) {
@@ -41,7 +43,6 @@ export const logoutUser = createAsyncThunk(
     try {
       const response = await axios.post('/auth/logout', persistedToken);
       clearAuthHeader();
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -58,6 +59,7 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get('/user/info');
+      // console.log(response.data.week.startWeekDate);
       dispatch(getTasks(response.data.week));
       return response.data;
     } catch (error) {

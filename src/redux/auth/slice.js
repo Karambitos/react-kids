@@ -17,6 +17,12 @@ const authSlice = createSlice({
     isRefreshing: false,
     error: null,
   },
+  reducers: {
+    updatedBalance(state, action) {
+      console.log(action.payload);
+      state.user.balance = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
@@ -72,6 +78,6 @@ const authSlice = createSlice({
   },
 });
 
-// export const { balanceUpdate, setModalAddTransactionOpen } = authSlice.actions;
+export const { updatedBalance } = authSlice.actions;
 
 export default authSlice.reducer;
