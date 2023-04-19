@@ -53,6 +53,44 @@ const tasksSlice = createSlice({
   },
   reducers: {
     getTasks(state, action) {
+      action.payload.tasks.forEach(obj => {
+        switch (obj.title) {
+          case 'Застелить постель':
+            obj.title = 'Make the bed';
+            // obj.imageUrl = 'https://new-image-url.com';
+            break;
+          case 'Почитать книгу':
+            obj.title = 'Read a book';
+            // obj.imageUrl = 'https://new-image-url.com';
+            break;
+          case 'Пропылесосить':
+            obj.title = 'Vacuum';
+            // obj.imageUrl = 'https://new-image-url.com';
+            break;
+          case 'Полить цветы':
+            obj.title = 'Water the flowers';
+            // obj.imageUrl = 'https://new-image-url.com';
+            break;
+          case 'Выкинуть мусор':
+            obj.title = 'Take the trash';
+            // obj.imageUrl = 'https://new-image-url.com';
+            break;
+          case 'Почистить зубы':
+            obj.title = 'Brush your teeth';
+            // obj.imageUrl = 'https://new-image-url.com';
+            break;
+          case 'Подмести':
+            obj.title = 'Sweep';
+            // obj.imageUrl = 'https://new-image-url.com';
+            break;
+          case 'Собрать игрушки':
+            obj.title = 'pick up toys';
+            // obj.imageUrl = 'https://new-image-url.com';
+            break;
+          default:
+            break;
+        }
+      });
       state.taskList = action.payload.tasks;
       state.startWeekDate = action.payload.startWeekDate;
       state.weekDates = createWeekDatesArray(action.payload.startWeekDate);
@@ -97,11 +135,6 @@ const tasksSlice = createSlice({
       //   })
       //   .addCase(refreshUser.rejected, (state, action) => {
       //     state.isRefreshing = false;
-      //   })
-      //   .addCase(switchProgress.fulfilled, state => {
-      //     state.data.week. = initData;
-      //     state.token = null;
-      //     console.log(state);
       //   })
       //   .addMatcher(
       //     action => action.type.endsWith('/pending'),

@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-
 import { loginUser, logoutUser, registerUser, refreshUser } from './operations';
-// import { switchProgress } from '../tasks/operations';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -12,6 +9,10 @@ const authSlice = createSlice({
       id: '',
       balance: 0,
     },
+    rewards: {
+      rewardsGained: 0,
+      rewardsPlanned: 0,
+    },
     token: null,
     isLoading: true,
     isRefreshing: false,
@@ -19,19 +20,36 @@ const authSlice = createSlice({
   },
   reducers: {
     updatedBalance(state, action) {
-      console.log(action.payload);
-      state.user.balance = action.payload;
+      state.user.balance = action.payload.updatedBalance;
+    },
+    updatedRewards(state, action) {
+      if (action.payload.updatedWeekGainedRewards) {
+        state.rewards.rewardsGained = action.payload.updatedWeekGainedRewards;
+      }
+      if (action.payload.updatedWeekPlannedRewards) {
+        state.rewards.rewardsPlanned = action.payload.updatedWeekPlannedRewards;
+      }
     },
   },
   extraReducers: builder => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        state.rewards.rewardsGained = action.payload.week.rewardsGained;
+        state.rewards.rewardsPlanned = action.payload.week.rewardsPlanned;
         state.token = action.payload.token;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        state.rewards.rewardsGained = action.payload.week.rewardsGained;
+        state.rewards.rewardsPlanned = action.payload.week.rewardsPlanned;
         state.token = action.payload.token;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.rewards.rewardsGained = action.payload.week.rewardsGained;
+        state.rewards.rewardsPlanned = action.payload.week.rewardsPlanned;
+        state.isRefreshing = false;
       })
       .addCase(logoutUser.fulfilled, state => {
         state.user = {
@@ -39,12 +57,12 @@ const authSlice = createSlice({
           id: '',
           balance: 0,
         };
+        state.rewards = {
+          rewardsGained: 0,
+          rewardsPlanned: 0,
+        };
         state.token = null;
         console.log(state);
-      })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isRefreshing = false;
       })
       .addCase(refreshUser.pending, (state, action) => {
         state.isRefreshing = true;
@@ -52,11 +70,7 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
       });
-    // .addCase(switchProgress.fulfilled, state => {
-    //   state.data.week. = initData;
-    //   state.token = null;
-    //   console.log(state);
-    // })
+
     // .addMatcher(
     //   action => action.type.endsWith('/pending'),
     //   (state, action) => {
@@ -78,6 +92,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { updatedBalance } = authSlice.actions;
+export const { updatedBalance, updatedRewards } = authSlice.actions;
 
 export default authSlice.reducer;

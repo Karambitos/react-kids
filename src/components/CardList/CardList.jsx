@@ -15,7 +15,7 @@ export default function CardList({ tasks, planning = false }) {
     </ul>
   );
 }
-// const currentDay = '2023-04-14'
+
 // const array = [
 //   {
 //     days: [
@@ -25,7 +25,10 @@ export default function CardList({ tasks, planning = false }) {
 //       { id: 4, date: '2023-04-13', isActive: false, isCompleted: false },
 //       { id: 5, date: '2023-04-14', isActive: true, isCompleted: false },
 //     ],
+//     imageUrl:
+//       'https://storage.googleapis.com/kidslikev2_bucket/Rectangle%2025.png',
 //     reward: 2,
+//     title: '1',
 //     _id: '1',
 //   },
 //   {
@@ -36,7 +39,10 @@ export default function CardList({ tasks, planning = false }) {
 //       { id: 4, date: '2023-04-13', isActive: false, isCompleted: false },
 //       { id: 5, date: '2023-04-14', isActive: false, isCompleted: false },
 //     ],
+//     imageUrl:
+//       'https://storage.googleapis.com/kidslikev2_bucket/Rectangle%2025.png',
 //     reward: 2,
+//     title: '2',
 //     _id: '2',
 //   },
 //   {
@@ -47,7 +53,10 @@ export default function CardList({ tasks, planning = false }) {
 //       { id: 4, date: '2023-04-13', isActive: false, isCompleted: false },
 //       { id: 5, date: '2023-04-14', isActive: false, isCompleted: false },
 //     ],
+//     imageUrl:
+//       'https://storage.googleapis.com/kidslikev2_bucket/Rectangle%2025.png',
 //     reward: 2,
+//     title: '3',
 //     _id: '3',
 //   },
 // ];

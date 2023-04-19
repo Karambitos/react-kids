@@ -1,0 +1,28 @@
+@import '../../scss/variables';
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.currentDayWrapper{
+  display: flex;
+  align-items: flex-end;
+}
+
+.currentDay{
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.progressBar {
+  display: flex;
+  align-items: center;
+}
+
+.progressBarData {
+  display: inline-block;
+  margin-right: 10px;
+}
+

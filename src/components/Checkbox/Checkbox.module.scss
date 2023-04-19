@@ -1,4 +1,6 @@
 
+@import '../../scss/variables';
+
 .label{
     display: flex;
     align-items: center;
@@ -12,19 +14,19 @@
 .checkbox {
     border-radius: 30px;
     height: 24px;
-    transition: .2s;
+    transition: background-color 300ms;
     width: 50px;
-    background-color: #4d4d4d;
+    background-color: $color-red;
     position: relative;
     cursor: pointer;
 }
 
 .checkboxCircle {
-    background-color: #fafafa;
-    border: 1px solid #4d4d4d;
+    background-color: $color-white;
+    filter: drop-shadow(4px 6px 15px rgba(0, 0, 0, 0.1));
     border-radius: 50%;
-    height: 22px;
-    width: 22px;
+    height: 20px;
+    width: 20px;
     transition: .25s;
     position: absolute;
     top: 50%;
@@ -34,15 +36,40 @@
 }
 
 .checkboxCircle:hover{
-    box-shadow: 0px 0px 2px 2px #e50914;
+    box-shadow: 0px 0px 5px 5px $color-green;
 }
 
-.disabled{
-    background-color: red;
+.iconCheck,
+.iconExclamation{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.iconCheck {
+    left: 5px;
+}
+
+.iconExclamation {
+    right: 5px;
 }
   
-.active  .checkboxCircle{
-    left: calc(95% - 22px);
+.active  {
+
+    &.checkbox{
+        background-color: $color-green;
+    }
+
+    .checkboxCircle{
+        left: calc(95% - 22px);
+    }
+
+    .checkboxCircle:hover{
+        box-shadow: 0px 0px 5px 5px $color-red;
+    }
 }
 
 

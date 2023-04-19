@@ -4,7 +4,7 @@ import { activeTask } from '../../../redux/tasks/operations';
 import { getWeekDates } from '../../../redux/tasks/selectors';
 import styles from './DaysList.module.scss';
 
-export default function DaysList({ task, taskId }) {
+export default function DaysList({ task, taskId, isShow }) {
   const weekDates = useSelector(getWeekDates);
 
   const dispatch = useDispatch();
@@ -20,18 +20,20 @@ export default function DaysList({ task, taskId }) {
   };
 
   return (
-    <form className={styles.daysList}>
+    <form className={`${styles.daysList} ${isShow ? styles.isShow : ''}`}>
       <ul>
         {weekDates.map(({ day, date }, index) => {
           return (
             <li key={index} id={date}>
-              <input
-                type="checkbox"
-                disabled={date < new Date().toJSON().slice(0, 10)}
-                checked={task[index].isActive}
-                onChange={() => handleChange(task, index)}
-              />
-              <label>{day.slice(0, 2)}</label>
+              <label>
+                <input
+                  type="checkbox"
+                  disabled={date < new Date().toJSON().slice(0, 10)}
+                  checked={task[index].isActive}
+                  onChange={() => handleChange(task, index)}
+                />
+                {day.slice(0, 2)}
+              </label>
             </li>
           );
         })}

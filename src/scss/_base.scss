@@ -69,6 +69,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   @include font-size(16, 24);
   font-weight: 400;
+  accent-color: #61a600;
 }
 
 #{$heading-selectors} {
@@ -87,6 +88,8 @@ body {
     font-style: normal;
   }
 }
+
+
 
 #modal-root {
   z-index: 10;
@@ -143,44 +146,42 @@ h6,
   align-items: stretch;
   display: flex;
   flex: 1 1;
+  gap: 30px;
   flex-direction: column;
   min-height: 100%;
   padding: 0 20px;
   position: relative;
-  @media (min-width: $breakpoint-tablet) {
+  @media (min-width: $breakpoint-desktop) {
     flex-direction: row;
-  }
-}
-
-.aside {
-  width: 100%;
-  background-color: $color-orange;
-  overflow: hidden;
-  @media (min-width: $breakpoint-tablet) {
-    max-width: 230px;
   }
 }
 
 .aside,
-.main {
+.main{
   display: flex;
   height: auto;
-  gap: 30px;
-  flex-direction: column;
   align-items: stretch;
   z-index: 2;
-
-  @media (min-width: $breakpoint-tablet) {
-    flex-direction: row;
-  }
-
   @media (min-width: $breakpoint-desktop) {
     padding: 45px 0;
-    flex-direction: column;
+  }
+}
+
+.aside {
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 50px;
+  @media (min-width: $breakpoint-desktop) {
+    padding: 45px 0 45px 30px;
+    max-width: 230px;
+    background-color: $color-orange;
   }
 }
 
 .main {
+  flex-direction: column;
   width: 100%;
   position: relative;
   overflow: hidden;

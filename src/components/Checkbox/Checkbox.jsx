@@ -4,7 +4,8 @@ import styles from './Checkbox.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentDate } from '../../redux/tasks/selectors';
 import { switchProgress } from '../../redux/tasks/operations';
-// import { useState } from 'react';
+import SVGCheck from '../../assets/check';
+import SVGExclamation from '../../assets/exclamation';
 
 export default function Checkbox({ checked, id = false }) {
   const dispatch = useDispatch();
@@ -28,6 +29,12 @@ export default function Checkbox({ checked, id = false }) {
         readOnly
       />
       <div className={`${styles.checkbox} ${checked ? styles.active : ''}`}>
+        <span className={styles.iconCheck}>
+          <SVGCheck />
+        </span>
+        <span className={styles.iconExclamation}>
+          <SVGExclamation />
+        </span>
         <div className={styles.checkboxCircle}></div>
       </div>
     </label>

@@ -24,21 +24,31 @@ export default function AppBar() {
           <Logo className={styles.logo} />
         </Link>
         {isLoggedIn && (
-          <nav className={styles.nav}>
-            <NavLink to="/">
-              {/* <HomePageIcon className={styles.navIcon} /> */}
-              <span>Main</span>
-            </NavLink>
-            <NavLink to="/planning">
-              <span>Planning</span>
-            </NavLink>
-            <NavLink to="/award">
-              <span>Award</span>
-            </NavLink>
+          <div className={styles.menu}>
+            <nav className={styles.nav}>
+              <NavLink
+                to="/"
+                className={navData => (navData.isActive ? styles.active : '')}
+              >
+                <span>Main</span>
+              </NavLink>
+              <NavLink
+                to="/planning"
+                className={navData => (navData.isActive ? styles.active : '')}
+              >
+                <span>Planning</span>
+              </NavLink>
+              <NavLink
+                to="/award"
+                className={navData => (navData.isActive ? styles.active : '')}
+              >
+                <span>Award</span>
+              </NavLink>
+            </nav>
             <button variant="contained" onClick={handleClick}>
               <SVGComponent />
             </button>
-          </nav>
+          </div>
         )}
       </header>
     </div>

@@ -59,7 +59,6 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get('/user/info');
-      // console.log(response.data.week.startWeekDate);
       dispatch(getTasks(response.data.week));
       return response.data;
     } catch (error) {

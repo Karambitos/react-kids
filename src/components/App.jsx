@@ -5,6 +5,7 @@ import { PublicRoute } from '../hoc/PublicRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
 import Layout from './Layout/Layout';
+import 'react-notifications/lib/notifications.css';
 import '../main.scss';
 const Home = lazy(() => import('../pages/Home'));
 const Planning = lazy(() => import('../pages/Planning'));
@@ -38,41 +39,6 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-
-      {/* <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route
-          index
-          element={
-            <PrivateRoute redirectTo="/login" component={<Home />} />
-          }
-        />
-        <Route
-          path="/statistics"
-          element={
-            <PrivateRoute redirectTo="/login" component={<Statistics />} />
-          }
-        />
-        <Route
-          path="/currency"
-          element={
-            <MobileRoute redirectTo="/login" component={<CurrencyMob />} />
-          }
-        />
-      </Route>
-      <Route
-        path="/login"
-        element={<PublicRoute redirectTo="/" component={<LoginPage />} />}
-      />
-      <Route
-        path="/register"
-        element={
-          <PublicRoute redirectTo="/" component={<RegisterPage />} />
-        }
-      />
-      <Route path="/Home" element={<Home />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes> */}
     </Suspense>
   );
 }

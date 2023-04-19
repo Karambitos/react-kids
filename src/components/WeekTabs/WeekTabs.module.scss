@@ -4,24 +4,56 @@
 
 .dayList{
     @include reset-list;
-    margin: auto 0 auto 48px
+    display: flex;
+    margin: 0 auto;
+    @media (min-width: $breakpoint-desktop) {
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
 }
 
 .dayItem {
-    background-color: $color-light-orange;
-    margin-bottom: 4px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    font-weight: 700;
+    margin: 0 4px;
+    @media (min-width: $breakpoint-desktop) {
+        margin: 0 0 4px 0;
+    }
 }
 
-.active{
-    background-color: $color-white;
+.active .dayButton {
+    background-color: $color-orange;
+    @media (min-width: $breakpoint-desktop) {
+        background-color: $color-white;
+    }
 }
 
 .dayButton {
     @include reset-button;
+    cursor: pointer;
     display: block;
     width: 100%;
-    padding: 12px 20px;
+    font-size: 14px;
+    padding: 6px;
+    background-color: $color-light-orange;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: transform 300ms;
+
+    @media (min-width: $breakpoint-desktop) {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        margin: 0 0 4px 0;
+      }
+
+    &:hover,
+    &:focus {
+        transform: scale(1.1);
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
 }

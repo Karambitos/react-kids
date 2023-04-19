@@ -11,8 +11,16 @@ export const getFilterTasks = createSelector(
       const matchingDay = obj.days.find(
         day => day.date === currentDate && day.isActive
       );
-      // console.log(matchingDay);
       return !!matchingDay;
     });
+  }
+);
+export const getCurrentDayName = createSelector(
+  [state => state.tasks.currentDate, state => state.tasks.weekDates],
+  (currentDate, weekDates) => {
+    if (weekDates.length > 0) {
+      const currentDay = weekDates.find(day => day.date === currentDate);
+      return currentDay.day;
+    }
   }
 );

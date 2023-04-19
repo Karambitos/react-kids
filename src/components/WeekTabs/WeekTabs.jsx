@@ -1,22 +1,21 @@
-import {
-  getCurrentDate,
-  getStartWeekDate,
-  getWeekDates,
-} from '../../redux/tasks/selectors';
-import { useEffect, useState } from 'react';
+import { getCurrentDate, getWeekDates } from '../../redux/tasks/selectors';
 import { useSelector, useDispatch } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import styles from './WeekTabs.module.scss';
 import { switchDate } from '../../redux/tasks/slice';
 
 export default function WeekTabs() {
   const currentDate = useSelector(getCurrentDate);
   const weekDates = useSelector(getWeekDates);
-  const startWeekDate = useSelector(getStartWeekDate);
   const dispatch = useDispatch();
 
   const handleClick = date => {
     dispatch(switchDate(date));
   };
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 1024px)',
+  });
 
   return (
     <div className="aside">
@@ -35,7 +34,7 @@ export default function WeekTabs() {
                 className={styles.dayButton}
                 onClick={() => handleClick(date)}
               >
-                {day}
+                {isMobile ? day.slice(0, 2) : day}
               </button>
             </li>
           );
