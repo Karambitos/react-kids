@@ -1,10 +1,7 @@
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppBar from '../AppBar/AppBar';
-import {
-  NotificationContainer,
-  NotificationManager,
-} from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
 
 export default function Layout() {
   return (

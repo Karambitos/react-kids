@@ -1,0 +1,32 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0 0 25px;
+
+  @media (min-width: $breakpoint-tablet-horizontal) {
+   flex-direction: row;
+  }
+}
+
+.dates {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: 700;
+}
+.rewards {
+  color: $text-color-gray;
+}
+
+.rewardsPlanned {
+  display: inline-block;
+  background-color: $color-green;
+  border-radius: 50%;
+  padding: 10px;
+  color: $text-color-white;
+  font-weight: 700;
+}

@@ -1,0 +1,47 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.wrapper {
+  display: flex;
+}
+
+.button {
+  @include reset-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #FFB532 0%, #FFD521 100%);
+  border-radius: 50%;
+  overflow: hidden;
+  transition: box-shadow 300ms;
+  margin-left: 20px;
+  min-width: 54px;
+  width: 54px;
+  height: 54px;
+  flex-basis: 54px;
+  position: relative;
+
+  &:after,
+  &:before {
+      display: block;
+      content: '';
+      border-radius: 2px;
+      background-color: $color-white;
+      position: absolute;
+      transition: transform 300ms;
+  }
+
+  &:before{
+      width: 32px;
+      height: 4px;
+  }
+  &:after{
+      width: 4px;
+      height: 32px;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0px 0px 5px 5px $color-green;
+  }
+}

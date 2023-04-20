@@ -22,7 +22,6 @@ export const activeTask = createAsyncThunk(
   'task/activeTask',
   async ({ days, taskId }, { thunkAPI, dispatch, getState }) => {
     const rewardsPlanned = getState().auth.rewards.rewardsPlanned;
-
     try {
       const response = await axios.patch(`/task/single-active/${taskId}`, days);
       dispatch(updatedRewards(response.data));
@@ -32,6 +31,18 @@ export const activeTask = createAsyncThunk(
         : NotificationManager.info(
             'You have removed the task from the scheduled ones!'
           );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const createTask = createAsyncThunk(
+  'task/create',
+  async (condition, { thunkAPI }) => {
+    try {
+      console.log(condition);
+      const response = await axios.post(`/task`, condition);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

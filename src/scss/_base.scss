@@ -89,8 +89,6 @@ body {
   }
 }
 
-
-
 #modal-root {
   z-index: 10;
 }
@@ -140,6 +138,10 @@ h6,
   max-width: $contentMaxWidth;
   width: 100%;
   margin: 0 auto;
+}
+
+.pageWrapper {
+  padding: 40px 20px;
 }
 
 .asideWrapper {
@@ -199,6 +201,28 @@ h6,
   width: 1px !important;
   overflow: hidden;
 } 
+
+label.fileUploader {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: auto;
+  height: 100%;
+  border: 2px dashed $color-green;
+
+  span {
+      display: inline-grid;
+      align-items: center;
+  }
+
+  svg {
+    margin-right: 20px;
+     path{
+        fill: $color-green ;
+      }
+  }
+}
 
 // .textAlignR {
 //   text-align: right;

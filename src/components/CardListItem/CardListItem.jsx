@@ -22,7 +22,6 @@ export default function ImageGalleryItem({ task, planning }) {
 
   const handleClick = () => {
     setIsShow(!isShow);
-    console.log(isShow);
   };
 
   return (

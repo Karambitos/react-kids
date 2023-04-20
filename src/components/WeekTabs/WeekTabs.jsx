@@ -9,6 +9,8 @@ export default function WeekTabs() {
   const weekDates = useSelector(getWeekDates);
   const dispatch = useDispatch();
 
+  console.log(weekDates);
+
   const handleClick = date => {
     dispatch(switchDate(date));
   };

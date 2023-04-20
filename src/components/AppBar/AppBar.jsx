@@ -5,10 +5,6 @@ import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { getIsAuth } from '../../redux/auth/selectors';
 import { logoutUser } from '../../redux/auth/operations';
 import SVGComponent from '../../assets/exitIcon';
-// import { ReactComponent as Logout } from '../../assets/svg/logout.svg';
-// import { ReactComponent as Divider } from '../../assets/svg/divider.svg';
-// import { LogoutBtn } from 'components/logoutBtn/logoutBtn';
-// import { useSelector } from 'react-redux';
 
 export default function AppBar() {
   const isLoggedIn = useSelector(getIsAuth);

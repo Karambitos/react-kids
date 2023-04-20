@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { activeTask, switchProgress } from './operations';
+import { activeTask, switchProgress, createTask } from './operations';
 
 const createWeekDatesArray = startWeekDate => {
   const dateArray = [];
@@ -91,7 +91,8 @@ const tasksSlice = createSlice({
             break;
         }
       });
-      state.taskList = action.payload.tasks;
+
+      state.taskList = action.payload.tasks.reverse();
       state.startWeekDate = action.payload.startWeekDate;
       state.weekDates = createWeekDatesArray(action.payload.startWeekDate);
     },
@@ -112,6 +113,16 @@ const tasksSlice = createSlice({
         const id = action.payload.updatedTask.id;
         const days = action.payload.updatedTask.days;
         state.taskList = updateTasks(taskList, id, days);
+      })
+      .addCase(createTask.fulfilled, (state, action) => {
+        const newTask = {
+          _id: action.payload.id,
+          title: action.payload.title,
+          reward: action.payload.reward,
+          imageUrl: action.payload.imageUrl,
+          days: action.payload.days,
+        };
+        state.taskList = [newTask, ...state.taskList];
       })
       //   .addCase(loginUser.fulfilled, (state, action) => {
       //     state.user = action.payload.user;

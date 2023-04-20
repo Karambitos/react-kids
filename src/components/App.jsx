@@ -9,6 +9,7 @@ import 'react-notifications/lib/notifications.css';
 import '../main.scss';
 const Home = lazy(() => import('../pages/Home'));
 const Planning = lazy(() => import('../pages/Planning'));
+const Awards = lazy(() => import('../pages/Awards'));
 const AuthPage = lazy(() => import('../pages/AuthPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
@@ -31,6 +32,10 @@ export default function App() {
             element={
               <PrivateRoute redirectTo="/auth" component={<Planning />} />
             }
+          />
+          <Route
+            path="/award"
+            element={<PrivateRoute redirectTo="/auth" component={<Awards />} />}
           />
           <Route
             path="/auth"

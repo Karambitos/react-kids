@@ -2,11 +2,7 @@ import { useSelector } from 'react-redux';
 import { getBalance, getRewards } from '../../redux/auth/selectors';
 import styles from './ProgressBar.module.scss';
 import { AnimatedLineProgressBar } from '@frogress/line';
-import {
-  getCurrentDate,
-  getCurrentDayName,
-  getWeekDates,
-} from '../../redux/tasks/selectors';
+import { getCurrentDate, getCurrentDayName } from '../../redux/tasks/selectors';
 
 export default function ProgressBar() {
   const { rewardsGained, rewardsPlanned } = useSelector(getRewards);
