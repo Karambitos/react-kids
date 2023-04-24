@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 
 import authReduser from './auth/slice';
 import tasksSlice from './tasks/slice';
+import giftsSlice from './gift/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -32,6 +33,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReduser),
     tasks: tasksSlice,
+    gifts: giftsSlice,
   },
   middleware,
 });

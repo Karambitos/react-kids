@@ -1,7 +1,5 @@
 import CardListItem from '../CardListItem/CardListItem';
 import styles from './CardList.module.scss';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getFilterTasks, getTasks } from '../../redux/tasks/selectors';
 
 export default function CardList({ tasks, planning = false }) {
   return (
@@ -9,7 +7,11 @@ export default function CardList({ tasks, planning = false }) {
       {tasks &&
         tasks.map(task => {
           return (
-            <CardListItem key={task._id} task={task} planning={planning} />
+            <CardListItem
+              key={task._id ?? task.id}
+              task={task}
+              planning={planning}
+            />
           );
         })}
     </ul>

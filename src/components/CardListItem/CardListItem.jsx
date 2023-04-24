@@ -8,7 +8,7 @@ import Image from '../../assets/placeholder.png';
 import SVGCheck from '../../assets/check';
 import SVGExclamation from '../../assets/exclamation';
 
-export default function ImageGalleryItem({ task, planning }) {
+export default function CardListItem({ task, planning }) {
   const [isShow, setIsShow] = useState(false);
   const currentDate = useSelector(getCurrentDate);
   const img = task.imageUrl ? task.imageUrl : Image;
@@ -16,13 +16,17 @@ export default function ImageGalleryItem({ task, planning }) {
   const currentDateGlobal = new Date().toJSON().slice(0, 10);
   const dayBefore = currentDate < currentDateGlobal;
 
-  const checked = !!task.days.find(
+  const checked = !!task.days?.find(
     day => day.date === currentDate && day.isCompleted
   );
 
   const handleClick = () => {
     setIsShow(!isShow);
   };
+
+  console.log(planning);
+
+  const points = task.reward ? task.reward : task.price;
 
   return (
     <>
@@ -31,8 +35,8 @@ export default function ImageGalleryItem({ task, planning }) {
         <div className={styles.cardItemContent}>
           <div className={styles.cardItemTitle}>
             <p>{task.title}</p>
-            <span className={styles.reward}>
-              {task.reward} {task.reward > 1 ? 'points' : 'point'}
+            <span className={styles.points}>
+              {points} {points > 1 ? ' points' : ' point'}
             </span>
           </div>
           {dayBefore && !planning && (
@@ -58,6 +62,17 @@ export default function ImageGalleryItem({ task, planning }) {
               <DaysList isShow={isShow} task={task.days} taskId={task._id} />
             </>
           )}
+          {/* {planning && (
+            <>
+              <button
+                className={`${styles.daysListBTN} ${
+                  isShow ? styles.isShow : ''
+                }`}
+                onClick={handleClick}
+              ></button>
+              <DaysList isShow={isShow} task={task.days} taskId={task._id} />
+            </>
+          )} */}
         </div>
       </li>
     </>

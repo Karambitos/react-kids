@@ -7,6 +7,7 @@ import { refreshUser } from '../redux/auth/operations';
 import Layout from './Layout/Layout';
 import 'react-notifications/lib/notifications.css';
 import '../main.scss';
+import { getGifts } from '../redux/gift/operations';
 const Home = lazy(() => import('../pages/Home'));
 const Planning = lazy(() => import('../pages/Planning'));
 const Awards = lazy(() => import('../pages/Awards'));
@@ -17,6 +18,7 @@ export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(getGifts());
   }, []);
 
   return (
