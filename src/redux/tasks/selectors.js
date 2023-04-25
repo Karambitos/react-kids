@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 export const getTasks = state => state.tasks.taskList;
+export const getIsLoading = state => state.tasks.isLoading;
 export const getWeekDates = state => state.tasks.weekDates;
 export const getCurrentDate = state => state.tasks.currentDate;
 export const getStartWeekDate = state => state.tasks.startWeekDate;

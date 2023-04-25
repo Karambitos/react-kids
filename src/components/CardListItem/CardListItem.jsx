@@ -17,7 +17,6 @@ export default function CardListItem({ item, page }) {
   const currentDateGlobal = new Date().toJSON().slice(0, 10);
   const dayBefore = currentDate < currentDateGlobal;
 
-  // currentDateGlobal === lastGiftBuy
   const checked =
     page === 'home'
       ? !!item.days?.find(day => day.date === currentDate && day.isCompleted)

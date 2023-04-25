@@ -2,7 +2,7 @@ import styles from './Checkbox.module.scss';
 import SVGCheck from '../../assets/check';
 import SVGExclamation from '../../assets/exclamation';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCurrentDate } from '../../redux/tasks/selectors';
+import { getCurrentDate, getIsLoading } from '../../redux/tasks/selectors';
 import { switchProgress } from '../../redux/tasks/operations';
 import { getBalance } from '../../redux/auth/selectors'; // import { getGiftsList } from '../../redux/gift/selectors';
 import { updateGifts } from '../../redux/gift/slice';
@@ -11,6 +11,7 @@ export default function Checkbox({ checked, id = false, page, points }) {
   const dispatch = useDispatch();
   const currentDate = useSelector(getCurrentDate);
   const balanse = useSelector(getBalance);
+  const isLoading = useSelector(getIsLoading);
 
   const handleCheckboxChange = e => {
     const itemId = id;
@@ -31,12 +32,17 @@ export default function Checkbox({ checked, id = false, page, points }) {
     <label className={styles.label}>
       <input
         type="checkbox"
+        disabled={isLoading}
         checked={checked}
         onClick={e => handleCheckboxChange(e)}
         className="visually-hidden"
         readOnly
       />
-      <div className={`${styles.checkbox} ${checked ? styles.active : ''}`}>
+      <div
+        className={`${styles.checkbox} ${checked && styles.active} ${
+          isLoading && styles.disabled
+        }`}
+      >
         <span className={styles.iconCheck}>
           <SVGCheck />
         </span>

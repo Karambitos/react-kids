@@ -26,16 +26,16 @@ const Awards = () => {
         <div className="pageWrapper">
           <ProgressBar />
           <CardList items={gifts} page={'awards'} />
+          <button
+            className="button"
+            disabled={!buttonDisabled}
+            onClick={handleBuyGifts}
+          >
+            confirm
+          </button>
+          {modalIsOpen && <CongratsModal />}
         </div>
       </div>
-      <button
-        className="button"
-        disabled={!buttonDisabled}
-        onClick={handleBuyGifts}
-      >
-        confirm
-      </button>
-      {modalIsOpen && <CongratsModal />}
     </>
   );
 };

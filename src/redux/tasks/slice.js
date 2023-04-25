@@ -49,6 +49,8 @@ const tasksSlice = createSlice({
     taskList: [],
     startWeekDate: '',
     weekDates: [],
+    isLoading: true,
+    error: null,
     currentDate: new Date().toJSON().slice(0, 10),
   },
   reducers: {
@@ -126,25 +128,27 @@ const tasksSlice = createSlice({
         };
         state.taskList = [newTask, ...state.taskList];
       })
-      // .addMatcher(
-      //   action => action.type.endsWith('/pending'),
-      //   (state, action) => {
-      //     state.error = null;
-      //   }
-      // )
+      .addMatcher(
+        action => action.type.endsWith('/pending'),
+        (state, action) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
       .addMatcher(
         action => action.type.endsWith('/rejected'),
         (state, action) => {
-          console.log('rejected');
-          // state.error = action.payload ? action.payload : null;
+          state.isLoading = false;
+          state.error = action.payload ? action.payload : null;
+        }
+      )
+      .addMatcher(
+        action => action.type.endsWith('/fulfilled'),
+        (state, action) => {
+          state.error = null;
+          state.isLoading = false;
         }
       );
-    //   .addMatcher(
-    //     action => action.type.endsWith('/fulfilled'),
-    //     (state, action) => {
-    //       state.error = null;
-    //     }
-    //   )
   },
 });
 
