@@ -62,7 +62,6 @@ const authSlice = createSlice({
           rewardsPlanned: 0,
         };
         state.token = null;
-        console.log(state);
       })
       .addCase(refreshUser.pending, (state, action) => {
         state.isRefreshing = true;

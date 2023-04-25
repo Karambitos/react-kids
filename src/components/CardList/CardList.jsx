@@ -1,20 +1,18 @@
 import CardListItem from '../CardListItem/CardListItem';
 import styles from './CardList.module.scss';
 
-export default function CardList({ tasks, planning = false }) {
+export default function CardList({ items, page = 'home' }) {
   return (
-    <ul className={styles.cardList}>
-      {tasks &&
-        tasks.map(task => {
-          return (
-            <CardListItem
-              key={task._id ?? task.id}
-              task={task}
-              planning={planning}
-            />
-          );
-        })}
-    </ul>
+    <>
+      <ul className={styles.cardList}>
+        {items &&
+          items.map(item => {
+            return (
+              <CardListItem key={item._id ?? item.id} item={item} page={page} />
+            );
+          })}
+      </ul>
+    </>
   );
 }
 

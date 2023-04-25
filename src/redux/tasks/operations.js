@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { updatedBalance, updatedRewards } from '../auth/slice';
 import { NotificationManager } from 'react-notifications';
-// import { setAuthHeader, clearAuthHeader } from '../../api';
 const { createAsyncThunk } = require('@reduxjs/toolkit');
 
 export const switchProgress = createAsyncThunk(
@@ -11,7 +10,6 @@ export const switchProgress = createAsyncThunk(
       const response = await axios.patch(`/task/switch/${id}`, date);
       dispatch(updatedBalance(response.data));
       dispatch(updatedRewards(response.data));
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -41,7 +39,6 @@ export const createTask = createAsyncThunk(
   'task/create',
   async (condition, { thunkAPI }) => {
     try {
-      console.log(condition);
       const response = await axios.post(`/task`, condition);
       return response.data;
     } catch (error) {

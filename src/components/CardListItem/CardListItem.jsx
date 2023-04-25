@@ -7,39 +7,40 @@ import styles from './CardListItem.module.scss';
 import Image from '../../assets/placeholder.png';
 import SVGCheck from '../../assets/check';
 import SVGExclamation from '../../assets/exclamation';
+import { getLastGiftBuy } from '../../redux/gift/selectors';
 
-export default function CardListItem({ task, planning }) {
+export default function CardListItem({ item, page }) {
   const [isShow, setIsShow] = useState(false);
+  const img = item.imageUrl ? item.imageUrl : Image;
   const currentDate = useSelector(getCurrentDate);
-  const img = task.imageUrl ? task.imageUrl : Image;
-
+  const lastGiftBuy = useSelector(getLastGiftBuy);
   const currentDateGlobal = new Date().toJSON().slice(0, 10);
   const dayBefore = currentDate < currentDateGlobal;
 
-  const checked = !!task.days?.find(
-    day => day.date === currentDate && day.isCompleted
-  );
+  // currentDateGlobal === lastGiftBuy
+  const checked =
+    page === 'home'
+      ? !!item.days?.find(day => day.date === currentDate && day.isCompleted)
+      : item.isSelected;
 
-  const handleClick = () => {
+  const handleOpenCheckbox = () => {
     setIsShow(!isShow);
   };
 
-  console.log(planning);
-
-  const points = task.reward ? task.reward : task.price;
+  const points = item.reward ? item.reward : item.price;
 
   return (
     <>
       <li className={`${styles.cardItem} ${dayBefore ? styles.disabled : ''}`}>
-        <img className={styles.cardItemImage} src={img} alt={task.title} />
+        <img className={styles.cardItemImage} src={img} alt={item.title} />
         <div className={styles.cardItemContent}>
           <div className={styles.cardItemTitle}>
-            <p>{task.title}</p>
+            <p>{item.title}</p>
             <span className={styles.points}>
               {points} {points > 1 ? ' points' : ' point'}
             </span>
           </div>
-          {dayBefore && !planning && (
+          {page === 'home' && dayBefore && (
             <span
               className={`${styles.cardStatus} ${
                 checked ? styles.isCompleted : ''
@@ -48,31 +49,35 @@ export default function CardListItem({ task, planning }) {
               {checked ? <SVGCheck /> : <SVGExclamation />}
             </span>
           )}
-          {currentDateGlobal === currentDate && !planning && (
-            <Checkbox checked={checked} id={task._id} />
-          )}
-          {planning && (
+          {page === 'home' &&
+            currentDateGlobal === currentDate &&
+            (currentDateGlobal === lastGiftBuy && checked ? (
+              <span className={`${styles.cardStatus} ${styles.isCompleted}`}>
+                <SVGCheck />
+              </span>
+            ) : (
+              <Checkbox checked={checked} id={item._id} />
+            ))}
+          {page === 'planning' && (
             <>
               <button
                 className={`${styles.daysListBTN} ${
                   isShow ? styles.isShow : ''
                 }`}
-                onClick={handleClick}
+                onClick={handleOpenCheckbox}
               ></button>
-              <DaysList isShow={isShow} task={task.days} taskId={task._id} />
+              <DaysList isShow={isShow} task={item.days} taskId={item._id} />
             </>
           )}
-          {/* {planning && (
+          {page === 'awards' && (
             <>
-              <button
-                className={`${styles.daysListBTN} ${
-                  isShow ? styles.isShow : ''
-                }`}
-                onClick={handleClick}
-              ></button>
-              <DaysList isShow={isShow} task={task.days} taskId={task._id} />
+              <Checkbox
+                checked={checked}
+                id={item._id ?? item.id}
+                page={page}
+              />
             </>
-          )} */}
+          )}
         </div>
       </li>
     </>

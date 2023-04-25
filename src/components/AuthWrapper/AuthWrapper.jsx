@@ -7,7 +7,7 @@ export const AuthWrapper = ({ children }) => {
       <div className="contentMaxWidth">
         <div className={styles.inner}>
           <div className={styles.image}>
-            <img src={Image} alt="Alt text" width="540" height="500" />
+            <img src={Image} alt="Main image" width="540" height="500" />
           </div>
           {children}
         </div>

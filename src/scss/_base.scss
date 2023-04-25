@@ -224,55 +224,42 @@ label.fileUploader {
   }
 }
 
-// .textAlignR {
-//   text-align: right;
-// }
 
-// .textAlignL {
-//   text-align: left;
-// }
+.button {
+  @include font-size(18, 20);
+  appearance: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: block;
+  font-family: inherit;
+  outline: none;
+  padding: 20px 30px;
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  user-select: none;
+  max-width: 220px;
+  width: 100%;
+  border: none;
 
-// .cell {
-//   display: flex;
-// }
+  color: $text-color-white;
+  background-color: $color-orange;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color-dark-orange;
+  }
+
+  &:disabled{
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
 
-// .button {
-//   @include font-size(18, 20);
-//   letter-spacing: 0.1em;
-//   appearance: none;
-//   border-radius: $button-border-radius-sm;
-//   cursor: pointer;
-//   display: inline-block;
-//   font-family: inherit;
-//   outline: none;
-//   padding: 12px 30px;
-//   text-align: center;
-//   text-decoration: none;
-//   text-transform: uppercase;
-//   transition: background-color 0.2s ease, color 0.2s ease,
-//     border-color 0.2s ease;
-//   user-select: none;
-//   border: 1px solid;
-
-//   color: $white;
-//   background-color: $color-orange;
-//   border-color: $color-orange;
-
-//   &:hover,
-//   &:focus,
-//   &:active {
-//     color: $colorPink;
-//     background-color: transparent;
-//     border-color: $color-orange;
-//   }
-
-//   &:disabled,
-//   &--disabled {
-//     opacity: 0.6;
-//     pointer-events: none;
-//   }
-
+}
 //   &--secondary {
 //     color: $colorBlue;
 //     background-color: transparent;

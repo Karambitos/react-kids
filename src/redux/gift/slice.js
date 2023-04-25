@@ -1,58 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getGifts } from './operations';
+import { buyGifts, getGifts } from './operations';
+import { NotificationManager } from 'react-notifications';
 
 const giftsSlice = createSlice({
   name: 'gifts',
   initialState: {
     gifts: [],
+    purchasedGiftIds: [],
+    totalPrice: 0,
+    lastGiftBuy: null,
+    modalShow: false,
   },
   reducers: {
-    // getTasks(state, action) {
-    //   action.payload.tasks.forEach(obj => {
-    //     switch (obj.title) {
-    //       case 'Застелить постель':
-    //         obj.title = 'Make the bed';
-    //         // obj.imageUrl = 'https://new-image-url.com';
-    //         break;
-    //       case 'Почитать книгу':
-    //         obj.title = 'Read a book';
-    //         // obj.imageUrl = 'https://new-image-url.com';
-    //         break;
-    //       case 'Пропылесосить':
-    //         obj.title = 'Vacuum';
-    //         // obj.imageUrl = 'https://new-image-url.com';
-    //         break;
-    //       case 'Полить цветы':
-    //         obj.title = 'Water the flowers';
-    //         // obj.imageUrl = 'https://new-image-url.com';
-    //         break;
-    //       case 'Выкинуть мусор':
-    //         obj.title = 'Take the trash';
-    //         // obj.imageUrl = 'https://new-image-url.com';
-    //         break;
-    //       case 'Почистить зубы':
-    //         obj.title = 'Brush your teeth';
-    //         // obj.imageUrl = 'https://new-image-url.com';
-    //         break;
-    //       case 'Подмести':
-    //         obj.title = 'Sweep';
-    //         // obj.imageUrl = 'https://new-image-url.com';
-    //         break;
-    //       case 'Собрать игрушки':
-    //         obj.title = 'pick up toys';
-    //         // obj.imageUrl = 'https://new-image-url.com';
-    //         break;
-    //       default:
-    //         break;
-    //     }
-    //   });
-    //   state.taskList = action.payload.tasks.reverse();
-    //   state.startWeekDate = action.payload.startWeekDate;
-    //   state.weekDates = createWeekDatesArray(action.payload.startWeekDate);
-    // },
-    // switchDate(state, action) {
-    //   state.currentDate = action.payload;
-    // },
+    updateGifts(state, action) {
+      const selectedSume = state.gifts
+        .filter(gift => gift.isSelected)
+        .reduce((acc, gift) => acc + gift.price, 0);
+
+      const curentGift = state.gifts.find(
+        element => element.id === action.payload.itemId
+      );
+
+      state.totalPrice = curentGift.isSelected
+        ? selectedSume - curentGift.price
+        : selectedSume + curentGift.price;
+
+      if (state.totalPrice > action.payload.balanse) {
+        NotificationManager.error('You have not enough points!');
+      } else {
+        state.gifts.map(element => {
+          element.id === action.payload.itemId &&
+            (element.isSelected = !element.isSelected);
+        });
+      }
+    },
+    updateModalShow(state, action) {
+      state.modalShow = !state.modalShow;
+    },
   },
   extraReducers: builder => {
     builder
@@ -97,6 +81,15 @@ const giftsSlice = createSlice({
         });
         state.gifts = action.payload.ruGifts;
       })
+      .addCase(buyGifts.fulfilled, (state, action) => {
+        state.purchasedGiftIds = action.payload.purchasedGiftIds;
+        const currentDate = new Date().toJSON().slice(0, 10);
+        state.lastGiftBuy = new Date().toJSON().slice(0, 10);
+        state.gifts.map(element => {
+          element.isSelected = false;
+        });
+      })
+
       //   .addCase(loginUser.fulfilled, (state, action) => {
       //     state.user = action.payload.user;
       //     state.token = action.payload.token;
@@ -142,6 +135,6 @@ const giftsSlice = createSlice({
   },
 });
 
-// export const { getTasks, switchDate } = giftsSlice.actions;
+export const { updateGifts, updateModalShow } = giftsSlice.actions;
 
 export default giftsSlice.reducer;

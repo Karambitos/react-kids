@@ -1,16 +1,22 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import PlanningHeader from '../components/PlanningHeader/PlanningHeader';
 import CardList from '../components/CardList/CardList';
 import { getTasks } from '../redux/tasks/selectors';
+import { refreshDate } from '../redux/tasks/slice';
 
 const Planning = () => {
   const tasks = useSelector(getTasks);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshDate());
+  }, []);
 
   return (
     <div className="contentMaxWidth">
       <div className="pageWrapper">
         <PlanningHeader />
-        <CardList tasks={tasks} planning={true} />
+        <CardList items={tasks} page={'planning'} />
       </div>
     </div>
   );

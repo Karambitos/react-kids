@@ -1,8 +1,11 @@
 @import '../../scss/variables';
 
 .wrapper {
-  display: flex;
-  justify-content: space-between;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .currentDayWrapper{
@@ -14,6 +17,10 @@
   text-transform: uppercase;
   font-weight: 700;
   margin-left: 10px;
+}
+
+.infoWrapper {
+  text-align: right;
 }
 
 .progressBar {

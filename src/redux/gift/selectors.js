@@ -1,10 +1,13 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-export const getGifts = state => state.gifts.gifts;
+export const getGiftsList = state => state.gifts.gifts;
+export const getLastGiftBuy = state => state.gifts.lastGiftBuy;
 
-// export const getGiftsS = createSelector(
-//   [state => state.gifts.gifts, _],
-//   (items, _) => {
-//     return items;
-//   }
-// );
+export const getModal = state => state.gifts.modalShow;
+
+export const getFilterGiftsList = createSelector(
+  [state => state.gifts.gifts, state => state.gifts.purchasedGiftIds],
+  (gifts, giftIds) => {
+    return gifts.filter(item => giftIds.includes(item.id));
+  }
+);

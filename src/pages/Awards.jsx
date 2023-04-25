@@ -1,23 +1,42 @@
 import { useSelector } from 'react-redux';
 import CardList from '../components/CardList/CardList';
-import { getTasks } from '../redux/tasks/selectors';
 import ProgressBar from '../components/ProgressBar/ProgressBar';
-import { getGifts } from '../redux/gift/selectors';
+import { getGiftsList, getModal } from '../redux/gift/selectors';
+import { buyGifts } from '../redux/gift/operations';
+import CongratsModal from '../components/CongratsModal/CongratsModal';
+import { useDispatch } from 'react-redux';
 
 const Awards = () => {
-  const tasks = useSelector(getTasks);
-  const gifts = useSelector(getGifts);
+  const gifts = useSelector(getGiftsList);
+  const buttonDisabled = gifts.some(item => item.isSelected === true);
+  console.log(buttonDisabled);
+  const modalIsOpen = useSelector(getModal);
+  const dispatch = useDispatch();
 
-  console.log(gifts);
-  // const dispatch = useDispatch();
-
+  const handleBuyGifts = () => {
+    const giftIds = [];
+    gifts.forEach(element => {
+      element.isSelected && giftIds.push(element.id);
+    });
+    dispatch(buyGifts(giftIds));
+  };
   return (
-    <div className="contentMaxWidth">
-      <div className="pageWrapper">
-        <ProgressBar />
-        <CardList tasks={gifts} />
+    <>
+      <div className="contentMaxWidth">
+        <div className="pageWrapper">
+          <ProgressBar />
+          <CardList items={gifts} page={'awards'} />
+        </div>
       </div>
-    </div>
+      <button
+        className="button"
+        disabled={!buttonDisabled}
+        onClick={handleBuyGifts}
+      >
+        confirm
+      </button>
+      {modalIsOpen && <CongratsModal />}
+    </>
   );
 };
 

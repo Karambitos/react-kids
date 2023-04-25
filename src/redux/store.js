@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import authReduser from './auth/slice';
+import authSlice from './auth/slice';
 import tasksSlice from './tasks/slice';
 import giftsSlice from './gift/slice';
 
@@ -19,6 +19,12 @@ const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
+};
+
+const giftsPersistConfig = {
+  key: 'gifts',
+  storage,
+  whitelist: ['lastGiftBuy'],
 };
 
 const middleware = [
@@ -31,9 +37,9 @@ const middleware = [
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReduser),
+    auth: persistReducer(authPersistConfig, authSlice),
     tasks: tasksSlice,
-    gifts: giftsSlice,
+    gifts: persistReducer(giftsPersistConfig, giftsSlice),
   },
   middleware,
 });

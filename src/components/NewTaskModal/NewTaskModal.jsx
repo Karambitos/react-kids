@@ -80,7 +80,7 @@ export default function NewTaskModal({ handleModalToggle }) {
             name="point"
             placeholder="Add points..."
             min="1"
-            max="30"
+            max="500"
             required
           />
           <button type="submit">Ok</button>

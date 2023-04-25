@@ -1,24 +1,32 @@
-// import { useSelector } from 'react-redux';
-// import { selectContactsCheckbox } from 'redux/contactBook/selectors';
 import styles from './Checkbox.module.scss';
+import SVGCheck from '../../assets/check';
+import SVGExclamation from '../../assets/exclamation';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentDate } from '../../redux/tasks/selectors';
 import { switchProgress } from '../../redux/tasks/operations';
-import SVGCheck from '../../assets/check';
-import SVGExclamation from '../../assets/exclamation';
+import { getBalance } from '../../redux/auth/selectors'; // import { getGiftsList } from '../../redux/gift/selectors';
+import { updateGifts } from '../../redux/gift/slice';
 
-export default function Checkbox({ checked, id = false }) {
+export default function Checkbox({ checked, id = false, page, points }) {
   const dispatch = useDispatch();
   const currentDate = useSelector(getCurrentDate);
+  const balanse = useSelector(getBalance);
+
   const handleCheckboxChange = e => {
+    const itemId = id;
     const credentials = {
       date: {
         date: currentDate,
       },
-      id: id,
+      id: itemId,
     };
-    dispatch(switchProgress(credentials));
+    if (page === 'awards') {
+      dispatch(updateGifts({ itemId, balanse }));
+    } else {
+      dispatch(switchProgress(credentials));
+    }
   };
+
   return (
     <label className={styles.label}>
       <input

@@ -6,7 +6,6 @@ import { getCurrentDate } from '../../redux/tasks/selectors';
 
 export default function CardListPlaceholder() {
   const currentDate = useSelector(getCurrentDate);
-  console.log();
   return (
     <div className={styles.wrapper}>
       <div className={styles.inner}>

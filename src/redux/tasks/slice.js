@@ -91,13 +91,15 @@ const tasksSlice = createSlice({
             break;
         }
       });
-
       state.taskList = action.payload.tasks.reverse();
       state.startWeekDate = action.payload.startWeekDate;
       state.weekDates = createWeekDatesArray(action.payload.startWeekDate);
     },
     switchDate(state, action) {
       state.currentDate = action.payload;
+    },
+    refreshDate(state, action) {
+      state.currentDate = new Date().toJSON().slice(0, 10);
     },
   },
   extraReducers: builder => {
@@ -124,35 +126,12 @@ const tasksSlice = createSlice({
         };
         state.taskList = [newTask, ...state.taskList];
       })
-      //   .addCase(loginUser.fulfilled, (state, action) => {
-      //     state.user = action.payload.user;
-      //     state.token = action.payload.token;
-      //   })
-      //   .addCase(logoutUser.fulfilled, state => {
-      //     state.user = {
-      //       email: '',
-      //       id: '',
-      //       balance: 0,
-      //     };
-      //     state.token = null;
-      //     console.log(state);
-      //   })
-      //   .addCase(refreshUser.fulfilled, (state, action) => {
-      //     state.user = action.payload.user;
-      //     state.isRefreshing = false;
-      //   })
-      //   .addCase(refreshUser.pending, (state, action) => {
-      //     state.isRefreshing = true;
-      //   })
-      //   .addCase(refreshUser.rejected, (state, action) => {
-      //     state.isRefreshing = false;
-      //   })
-      //   .addMatcher(
-      //     action => action.type.endsWith('/pending'),
-      //     (state, action) => {
-      //       state.error = null;
-      //     }
-      //   )
+      // .addMatcher(
+      //   action => action.type.endsWith('/pending'),
+      //   (state, action) => {
+      //     state.error = null;
+      //   }
+      // )
       .addMatcher(
         action => action.type.endsWith('/rejected'),
         (state, action) => {
@@ -169,6 +148,6 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { getTasks, switchDate } = tasksSlice.actions;
+export const { getTasks, switchDate, refreshDate } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

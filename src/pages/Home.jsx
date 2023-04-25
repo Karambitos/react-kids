@@ -17,7 +17,7 @@ const Home = () => {
       <WeekTabContent>
         <ProgressBar />
         {filteredTasks.length > 0 ? (
-          <CardList tasks={filteredTasks} />
+          <CardList items={filteredTasks} />
         ) : (
           <CardListPlaceholder />
         )}
