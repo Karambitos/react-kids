@@ -21,12 +21,7 @@ export default function CongratsModal() {
             {giftsFilter?.map(item => {
               return (
                 <li key={item.id} className={styles.item}>
-                  <img
-                    src={item.imageUrl}
-                    alt="Gift image"
-                    width="90"
-                    height="90"
-                  />
+                  <img src={item.imageUrl} alt="Gift" width="90" height="90" />
                   {item.title}
                 </li>
               );

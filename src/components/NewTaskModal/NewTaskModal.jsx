@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FileUploader } from 'react-drag-drop-files';
 import SVGUploadImg from '../../assets/uploadImg';
 import Image from '../../assets/fileUploader.png';
 import styles from './NewTaskModal.module.scss';
 import { createTask } from '../../redux/tasks/operations';
-import { getTasks } from '../../redux/tasks/selectors';
 
 const fileTypes = ['JPG', 'PNG'];
 

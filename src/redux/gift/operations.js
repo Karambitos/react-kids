@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { updatedBalance } from '../auth/slice';
 import { updateModalShow } from '../gift/slice';
-import { NotificationManager } from 'react-notifications';
 const { createAsyncThunk } = require('@reduxjs/toolkit');
 
 export const getGifts = createAsyncThunk(
@@ -25,7 +24,6 @@ export const buyGifts = createAsyncThunk(
       });
       dispatch(updatedBalance(response.data));
       dispatch(updateModalShow());
-      NotificationManager.success('You bought a gift!');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

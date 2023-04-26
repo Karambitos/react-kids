@@ -8,6 +8,11 @@ import Layout from './Layout/Layout';
 import 'react-notifications/lib/notifications.css';
 import '../main.scss';
 import { getGifts } from '../redux/gift/operations';
+import { getIsRefreshing } from '../redux/auth/selectors';
+import Loader from './Loader/Loader';
+import AppBar from './AppBar/AppBar';
+import { NotificationContainer } from 'react-notifications';
+
 const Home = lazy(() => import('../pages/Home'));
 const Planning = lazy(() => import('../pages/Planning'));
 const Awards = lazy(() => import('../pages/Awards'));
@@ -16,35 +21,42 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 
 export default function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(getIsRefreshing);
   useEffect(() => {
     dispatch(refreshUser());
     dispatch(getGifts());
-  }, []);
+  }, [dispatch]);
 
-  return (
-    <Suspense fallback={'...Loading'}>
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+    <Suspense fallback={<Loader />}>
+      <NotificationContainer />
+      <AppBar />
       <Routes>
-        <Route element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route
-            path="/"
-            element={<PrivateRoute redirectTo="/auth" component={<Home />} />}
+            index
+            element={<PrivateRoute redirectTo="/login" component={<Home />} />}
           />
           <Route
             path="/planning"
             element={
-              <PrivateRoute redirectTo="/auth" component={<Planning />} />
+              <PrivateRoute redirectTo="/login" component={<Planning />} />
             }
           />
           <Route
             path="/award"
-            element={<PrivateRoute redirectTo="/auth" component={<Awards />} />}
-          />
-          <Route
-            path="/auth"
-            element={<PublicRoute redirectTo="/" component={<AuthPage />} />}
+            element={
+              <PrivateRoute redirectTo="/login" component={<Awards />} />
+            }
           />
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route
+          path="/login"
+          element={<PublicRoute redirectTo="/" component={<AuthPage />} />}
+        />
       </Routes>
     </Suspense>
   );

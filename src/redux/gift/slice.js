@@ -10,6 +10,8 @@ const giftsSlice = createSlice({
     totalPrice: 0,
     lastGiftBuy: null,
     modalShow: false,
+    isLoading: false,
+    error: null,
   },
   reducers: {
     updateGifts(state, action) {
@@ -29,8 +31,10 @@ const giftsSlice = createSlice({
         NotificationManager.error('You have not enough points!');
       } else {
         state.gifts.map(element => {
-          element.id === action.payload.itemId &&
-            (element.isSelected = !element.isSelected);
+          return (
+            element.id === action.payload.itemId &&
+            (element.isSelected = !element.isSelected)
+          );
         });
       }
     },
@@ -83,55 +87,32 @@ const giftsSlice = createSlice({
       })
       .addCase(buyGifts.fulfilled, (state, action) => {
         state.purchasedGiftIds = action.payload.purchasedGiftIds;
-        const currentDate = new Date().toJSON().slice(0, 10);
         state.lastGiftBuy = new Date().toJSON().slice(0, 10);
         state.gifts.map(element => {
-          element.isSelected = false;
+          return (element.isSelected = false);
         });
       })
-
-      //   .addCase(loginUser.fulfilled, (state, action) => {
-      //     state.user = action.payload.user;
-      //     state.token = action.payload.token;
-      //   })
-      //   .addCase(logoutUser.fulfilled, state => {
-      //     state.user = {
-      //       email: '',
-      //       id: '',
-      //       balance: 0,
-      //     };
-      //     state.token = null;
-      //     console.log(state);
-      //   })
-      //   .addCase(refreshUser.fulfilled, (state, action) => {
-      //     state.user = action.payload.user;
-      //     state.isRefreshing = false;
-      //   })
-      //   .addCase(refreshUser.pending, (state, action) => {
-      //     state.isRefreshing = true;
-      //   })
-      //   .addCase(refreshUser.rejected, (state, action) => {
-      //     state.isRefreshing = false;
-      //   })
-      //   .addMatcher(
-      //     action => action.type.endsWith('/pending'),
-      //     (state, action) => {
-      //       state.error = null;
-      //     }
-      //   )
+      .addMatcher(
+        action => action.type.endsWith('/pending'),
+        (state, action) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
       .addMatcher(
         action => action.type.endsWith('/rejected'),
         (state, action) => {
-          console.log('rejected');
-          // state.error = action.payload ? action.payload : null;
+          state.isLoading = false;
+          state.error = action.payload ? action.payload : null;
+        }
+      )
+      .addMatcher(
+        action => action.type.endsWith('/fulfilled'),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = null;
         }
       );
-    //   .addMatcher(
-    //     action => action.type.endsWith('/fulfilled'),
-    //     (state, action) => {
-    //       state.error = null;
-    //     }
-    //   )
   },
 });
 

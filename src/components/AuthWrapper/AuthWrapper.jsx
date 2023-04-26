@@ -3,27 +3,34 @@ import Image from '../../assets/image.png';
 
 export const AuthWrapper = ({ children }) => {
   return (
-    <div className={styles.wrapper}>
-      <div className="contentMaxWidth">
-        <div className={styles.inner}>
-          <div className={styles.image}>
-            <img src={Image} alt="Main image" width="540" height="500" />
+    <>
+      <div className={styles.wrapper}>
+        <div className="contentMaxWidth">
+          <div className={styles.inner}>
+            <div className={styles.image}>
+              <img
+                src={Image}
+                alt="Family cleans the room"
+                width="540"
+                height="500"
+              />
+            </div>
+            {children}
           </div>
-          {children}
+        </div>
+        <div className={styles.bubbles}>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
+          <div className={styles.bubble}></div>
         </div>
       </div>
-      <div className={styles.bubbles}>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-      </div>
-    </div>
+    </>
   );
 };

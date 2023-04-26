@@ -16,11 +16,7 @@ export default function AddCustomTask() {
     <>
       <div className={styles.wrapper}>
         <p>If you want to get more prizes - add tasks :)</p>
-        <button
-          className={styles.button}
-          onClick={handleClick}
-          role=""
-        ></button>
+        <button className={styles.button} onClick={handleClick}></button>
       </div>
       {showModal && (
         <Modal handleModalToggle={handleModalToggle}>

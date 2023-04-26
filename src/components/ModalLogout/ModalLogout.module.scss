@@ -1,0 +1,34 @@
+@import '../../scss/variables';
+
+.modal {
+  padding: 40px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.text {
+  margin-bottom: 20px;
+  font-size: 18px;
+  @media (max-width: $breakpoint-tablet) {
+    text-align: center;
+    max-width: 180px;
+  }
+}
+
+.buttonsWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  @media (max-width: $breakpoint-tablet) {
+    gap: 20px;
+  }
+}
+
+.button {
+  display: block;
+  flex: 0 0 100px;
+}
+

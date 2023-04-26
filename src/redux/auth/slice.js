@@ -63,31 +63,30 @@ const authSlice = createSlice({
         };
         state.token = null;
       })
-      .addCase(refreshUser.pending, (state, action) => {
-        state.isRefreshing = true;
-      })
-      .addCase(refreshUser.rejected, (state, action) => {
-        state.isRefreshing = false;
-      });
-
-    // .addMatcher(
-    //   action => action.type.endsWith('/pending'),
-    //   (state, action) => {
-    //     state.error = null;
-    //   }
-    // )
-    // .addMatcher(
-    //   action => action.type.endsWith('/rejected'),
-    //   (state, action) => {
-    //     state.error = action.payload ? action.payload : null;
-    //   }
-    // )
-    // .addMatcher(
-    //   action => action.type.endsWith('/fulfilled'),
-    //   (state, action) => {
-    //     state.error = null;
-    //   }
-    // );
+      .addMatcher(
+        action => action.type.endsWith('/pending'),
+        (state, action) => {
+          state.isRefreshing = true;
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        action => action.type.endsWith('/rejected'),
+        (state, action) => {
+          state.isRefreshing = false;
+          state.isLoading = false;
+          state.error = action.payload ? action.payload : null;
+        }
+      )
+      .addMatcher(
+        action => action.type.endsWith('/fulfilled'),
+        (state, action) => {
+          state.isRefreshing = false;
+          state.isLoading = false;
+          state.error = null;
+        }
+      );
   },
 });
 

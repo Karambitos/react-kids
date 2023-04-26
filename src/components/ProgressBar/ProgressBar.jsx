@@ -30,7 +30,7 @@ export default function ProgressBar() {
         <p>
           Points planned for this week: <span>{rewardsPlanned}</span>
         </p>
-        {percent != NaN && (
+        {!isNaN(percent) && (
           <div className={styles.progressBar}>
             <span className={styles.progressBarData}>
               <span>{rewardsGained}</span>/<span>{rewardsPlanned}</span>

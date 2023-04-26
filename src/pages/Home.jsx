@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import CardList from '../components/CardList/CardList';
 import WeekTabContent from '../components/WeekTabContent/WeekTabContent';
 import WeekTabs from '../components/WeekTabs/WeekTabs';

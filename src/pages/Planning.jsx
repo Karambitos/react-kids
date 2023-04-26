@@ -10,7 +10,7 @@ const Planning = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshDate());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="contentMaxWidth">

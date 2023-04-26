@@ -1,14 +1,11 @@
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import AppBar from '../AppBar/AppBar';
-import { NotificationContainer } from 'react-notifications';
+import Loader from '../Loader/Loader';
 
 export default function Layout() {
   return (
     <div className="containerRoot">
-      <AppBar />
-      <Suspense fallback={'...Loading'}>
-        <NotificationContainer />
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </div>

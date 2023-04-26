@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Checkbox from '../Checkbox/Checkbox';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getCurrentDate } from '../../redux/tasks/selectors';
 import DaysList from './DaysList/DaysList';
 import styles from './CardListItem.module.scss';

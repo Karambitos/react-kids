@@ -4,7 +4,7 @@ import SVGExclamation from '../../assets/exclamation';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentDate, getIsLoading } from '../../redux/tasks/selectors';
 import { switchProgress } from '../../redux/tasks/operations';
-import { getBalance } from '../../redux/auth/selectors'; // import { getGiftsList } from '../../redux/gift/selectors';
+import { getBalance } from '../../redux/auth/selectors';
 import { updateGifts } from '../../redux/gift/slice';
 
 export default function Checkbox({ checked, id = false, page, points }) {

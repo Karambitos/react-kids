@@ -1,18 +1,25 @@
 import styles from './AppBar.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import Modal from '../Modal/Modal';
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { getIsAuth } from '../../redux/auth/selectors';
-import { logoutUser } from '../../redux/auth/operations';
 import SVGComponent from '../../assets/exitIcon';
+import { useState } from 'react';
+import ModalLogout from '../ModalLogout/ModalLogout';
 
 export default function AppBar() {
   const isLoggedIn = useSelector(getIsAuth);
-  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   const handleClick = () => {
-    dispatch(logoutUser());
+    setShowModal(!showModal);
   };
+
+  const handleModalToggle = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <div className={styles.headerWrapper}>
       <header className={`${styles.header} contentMaxWidth`}>
@@ -47,6 +54,11 @@ export default function AppBar() {
           </div>
         )}
       </header>
+      {showModal && (
+        <Modal handleModalToggle={handleModalToggle}>
+          <ModalLogout handleModalToggle={handleModalToggle} />
+        </Modal>
+      )}
     </div>
   );
 }

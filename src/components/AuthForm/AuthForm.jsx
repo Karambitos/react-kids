@@ -5,10 +5,16 @@ import Register from './RegisterForm/RegisterForm';
 
 export const AuthForm = () => {
   const [checked, setChecked] = useState(true);
+  const [isShown, setIsShown] = useState(false);
 
   const handlClick = () => {
     setChecked(!checked);
     return checked;
+  };
+
+  const handlShowPass = () => {
+    setIsShown(!isShown);
+    return isShown;
   };
 
   return (
@@ -27,7 +33,11 @@ export const AuthForm = () => {
             <span>Login</span>/<span>Register</span>
           </div>
         </label>
-        {checked ? <Login /> : <Register />}
+        {checked ? (
+          <Login isShown={isShown} handlShowPass={handlShowPass} />
+        ) : (
+          <Register isShown={isShown} handlShowPass={handlShowPass} />
+        )}
       </div>
     </div>
   );

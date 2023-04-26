@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { setAuthHeader, clearAuthHeader } from '../../api';
 import { getTasks } from '../tasks/slice';
+import { NotificationManager } from 'react-notifications';
 const { createAsyncThunk } = require('@reduxjs/toolkit');
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const registerUser = createAsyncThunk(
   'auth/registration',
@@ -10,10 +10,10 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await axios.post(`/auth/register`, credentials);
       setAuthHeader(response.data.token);
-      // console.log(response.data.week.startWeekDate);
       dispatch(getTasks(response.data.week));
       return response.data;
     } catch (error) {
+      NotificationManager.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -24,11 +24,10 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post('/auth/login', credentials);
       setAuthHeader(response.data.token);
-      // console.log(response.data.week.startWeekDate);
       dispatch(getTasks(response.data.week));
       return response.data;
     } catch (error) {
-      // Notify.failure('Incorect email or password');
+      NotificationManager.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
