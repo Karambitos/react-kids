@@ -3,17 +3,22 @@
 
 .daysList {
     position: absolute;
-    top: 6px;
+    top: -15px;
     right: 6px;
     color: $text-color-white;
     background-color: $color-blue;
     border-radius: 6px;
     padding: 15px 20px;
-    max-height: 200px;
+    max-height: 235px;
     height: 0;
     opacity: 0;
     pointer-events: none;
     transition: height 300ms, opacity 300ms;
+
+
+    li:not(:last-child){
+        margin-bottom: 6px;
+    }
 
     &.isShow{
         opacity: 1;
@@ -26,11 +31,14 @@
     }
 
     input {
-        margin-right: 12px;
+        margin: 0 12px 0 0;
+        width: 20px;
+        height: 20px;
     }
 
     label {
         font-weight: 700;
-        
+        display: flex;
+        align-items: center;
     }
 }
