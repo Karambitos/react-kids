@@ -27,9 +27,7 @@ export default function App() {
     dispatch(getGifts());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <Loader />
-  ) : (
+  return (
     <Suspense fallback={<Loader />}>
       <NotificationContainer />
       <AppBar />

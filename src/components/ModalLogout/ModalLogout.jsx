@@ -13,7 +13,7 @@ export default function ModalLogout({ handleModalToggle }) {
   return (
     <div className={styles.modal}>
       <h3 className={styles.title}>Are you sure?</h3>
-      <p className={styles.text}>Confirm you want to Exit and Logout</p>
+      <p className={styles.text}>Confirm you want to sign out!</p>
       <div className={styles.buttonsWrap}>
         <button type="button" className="button" onClick={handleLogout}>
           Yes

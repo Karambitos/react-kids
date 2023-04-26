@@ -27,6 +27,7 @@ export const loginUser = createAsyncThunk(
       dispatch(getTasks(response.data.week));
       return response.data;
     } catch (error) {
+      console.log(error.response.data.message);
       NotificationManager.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }

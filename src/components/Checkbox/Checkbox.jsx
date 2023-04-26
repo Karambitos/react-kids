@@ -39,7 +39,7 @@ export default function Checkbox({ checked, id = false, page, points }) {
         readOnly
       />
       <div
-        className={`${styles.checkbox} ${checked && styles.active} ${
+        className={`${styles.checkbox} ${checked ? styles.active : ''} ${
           isLoading && styles.disabled
         }`}
       >
