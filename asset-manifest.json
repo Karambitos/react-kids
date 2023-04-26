@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/react-kids/static/css/main.2eda5f74.css",
-    "main.js": "/react-kids/static/js/main.05ce4ea7.js",
-    "static/css/375.12d2e54a.chunk.css": "/react-kids/static/css/375.12d2e54a.chunk.css",
+    "main.js": "/react-kids/static/js/main.471dd7f6.js",
+    "static/css/375.3ab33952.chunk.css": "/react-kids/static/css/375.3ab33952.chunk.css",
     "static/js/375.8b91a2d5.chunk.js": "/react-kids/static/js/375.8b91a2d5.chunk.js",
-    "static/css/257.c6b15af1.chunk.css": "/react-kids/static/css/257.c6b15af1.chunk.css",
+    "static/css/257.c1134194.chunk.css": "/react-kids/static/css/257.c1134194.chunk.css",
     "static/js/257.09418e3c.chunk.js": "/react-kids/static/js/257.09418e3c.chunk.js",
-    "static/css/583.b9a260ac.chunk.css": "/react-kids/static/css/583.b9a260ac.chunk.css",
+    "static/css/583.3545f7cc.chunk.css": "/react-kids/static/css/583.3545f7cc.chunk.css",
     "static/js/583.4ee1233d.chunk.js": "/react-kids/static/js/583.4ee1233d.chunk.js",
     "static/css/638.fed119ad.chunk.css": "/react-kids/static/css/638.fed119ad.chunk.css",
     "static/js/638.0eae5642.chunk.js": "/react-kids/static/js/638.0eae5642.chunk.js",
@@ -42,12 +42,12 @@
     "static/media/notification.ttf?s3g3t9": "/react-kids/static/media/notification.c5d9251ea82e42f75381.ttf",
     "index.html": "/react-kids/index.html",
     "main.2eda5f74.css.map": "/react-kids/static/css/main.2eda5f74.css.map",
-    "main.05ce4ea7.js.map": "/react-kids/static/js/main.05ce4ea7.js.map",
-    "375.12d2e54a.chunk.css.map": "/react-kids/static/css/375.12d2e54a.chunk.css.map",
+    "main.471dd7f6.js.map": "/react-kids/static/js/main.471dd7f6.js.map",
+    "375.3ab33952.chunk.css.map": "/react-kids/static/css/375.3ab33952.chunk.css.map",
     "375.8b91a2d5.chunk.js.map": "/react-kids/static/js/375.8b91a2d5.chunk.js.map",
-    "257.c6b15af1.chunk.css.map": "/react-kids/static/css/257.c6b15af1.chunk.css.map",
+    "257.c1134194.chunk.css.map": "/react-kids/static/css/257.c1134194.chunk.css.map",
     "257.09418e3c.chunk.js.map": "/react-kids/static/js/257.09418e3c.chunk.js.map",
-    "583.b9a260ac.chunk.css.map": "/react-kids/static/css/583.b9a260ac.chunk.css.map",
+    "583.3545f7cc.chunk.css.map": "/react-kids/static/css/583.3545f7cc.chunk.css.map",
     "583.4ee1233d.chunk.js.map": "/react-kids/static/js/583.4ee1233d.chunk.js.map",
     "638.fed119ad.chunk.css.map": "/react-kids/static/css/638.fed119ad.chunk.css.map",
     "638.0eae5642.chunk.js.map": "/react-kids/static/js/638.0eae5642.chunk.js.map",
@@ -58,6 +58,6 @@
   },
   "entrypoints": [
     "static/css/main.2eda5f74.css",
-    "static/js/main.05ce4ea7.js"
+    "static/js/main.471dd7f6.js"
   ]
 }
