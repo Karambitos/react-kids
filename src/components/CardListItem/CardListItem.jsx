@@ -25,7 +25,6 @@ export default function CardListItem({ item, page }) {
   const handleOpenCheckbox = () => {
     setIsShow(!isShow);
   };
-  console.log(currentDateGlobal === currentDate);
   const points = item.reward ? item.reward : item.price;
 
   return (

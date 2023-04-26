@@ -22,6 +22,5 @@ export default function WeekDates() {
       dateArray.push({ date: dateString, day: dayName });
     }
   }
-  console.log('dateArray in hooks ', dateArray);
   return dateArray;
 }

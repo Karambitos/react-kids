@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux';
 const Awards = () => {
   const gifts = useSelector(getGiftsList);
   const buttonDisabled = gifts.some(item => item.isSelected === true);
-  console.log(buttonDisabled);
   const modalIsOpen = useSelector(getModal);
   const dispatch = useDispatch();
 

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { buyGifts, getGifts } from './operations';
 import { NotificationManager } from 'react-notifications';
+import Money from '../../assets/money.png';
+import Shopping from '../../assets/Shopping.png';
 
 const giftsSlice = createSlice({
   name: 'gifts',
@@ -64,8 +66,8 @@ const giftsSlice = createSlice({
               // obj.imageUrl = 'https://new-image-url.com';
               break;
             case 'Вечеринка с друзьями':
-              obj.title = 'PARTY WITH FRIENDS';
-              // obj.imageUrl = 'https://new-image-url.com';
+              obj.title = 'New dress';
+              obj.imageUrl = Shopping;
               break;
             case 'Поход в макдональдс':
               obj.title = 'GOING TO McDonald’s';
@@ -76,8 +78,8 @@ const giftsSlice = createSlice({
               // obj.imageUrl = 'https://new-image-url.com';
               break;
             case 'Поход на каток':
-              obj.title = 'ice skating';
-              // obj.imageUrl = 'https://new-image-url.com';
+              obj.title = 'Pocket money';
+              obj.imageUrl = Money;
               break;
             default:
               break;
