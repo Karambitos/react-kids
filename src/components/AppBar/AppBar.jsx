@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { ReactComponent as MobileLogo } from '../../assets/svg/mobileLogo.svg';
-import { getIsAuth } from '../../redux/auth/selectors';
+import { getEmail, getIsAuth } from '../../redux/auth/selectors';
 import { useMediaQuery } from 'react-responsive';
 import SVGComponent from '../../assets/exitIcon';
 import { useState } from 'react';
@@ -12,8 +12,15 @@ import ModalLogout from '../ModalLogout/ModalLogout';
 
 export default function AppBar() {
   const isLoggedIn = useSelector(getIsAuth);
+  const email = useSelector(getEmail);
   const [showModal, setShowModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
+  const symbolsBeforeAt = email?.split('@')[0];
+
+  const colors = ['#091f8b', '#0000FF', '#7a3bba', '#9d1f29', '#efbb43'];
+
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
   const handleClick = () => {
     setShowModal(!showModal);
@@ -28,7 +35,7 @@ export default function AppBar() {
   };
 
   const isMobile = useMediaQuery({
-    query: '(max-width: 580px)',
+    query: '(max-width: 768px)',
   });
 
   return (
@@ -116,6 +123,18 @@ export default function AppBar() {
                 </NavLink>
               </nav>
             )}
+            {symbolsBeforeAt && (
+              <span className={styles.user}>
+                <span
+                  className={styles.userIcon}
+                  style={{ background: randomColor }}
+                >
+                  {symbolsBeforeAt.slice(0, 1)}
+                </span>
+                <span className={styles.userText}>{symbolsBeforeAt}</span>
+              </span>
+            )}
+
             <button
               variant="contained"
               className={styles.button}

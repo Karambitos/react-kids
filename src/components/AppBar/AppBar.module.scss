@@ -25,8 +25,7 @@
   display: flex;
   align-items: center;
 
-
-  @media (max-width: $breakpoint-mobile-horizontal) {
+  @media (max-width: $breakpoint-tablet) {
     flex-direction: row-reverse;
     gap: 20px;
   }
@@ -111,6 +110,39 @@
 
   &.open {
     left: 10%;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.userIcon {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  margin: 0 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-color-white;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.userText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 150px;
+
+  @media (max-width: $breakpoint-tablet) {
+    display: none;
   }
 }
 

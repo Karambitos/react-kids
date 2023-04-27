@@ -61,6 +61,7 @@ export const refreshUser = createAsyncThunk(
       dispatch(getTasks(response.data.week));
       return response.data;
     } catch (error) {
+      clearAuthHeader();
       return thunkAPI.rejectWithValue(error.message);
     }
   }
