@@ -2,13 +2,12 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateRoute } from '../hoc/PrivateRoute';
 import { PublicRoute } from '../hoc/PublicRoute';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
 import Layout from './Layout/Layout';
 import 'react-notifications/lib/notifications.css';
 import '../main.scss';
 import { getGifts } from '../redux/gift/operations';
-import { getIsRefreshing } from '../redux/auth/selectors';
 import Loader from './Loader/Loader';
 import AppBar from './AppBar/AppBar';
 import { NotificationContainer } from 'react-notifications';
@@ -21,7 +20,6 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 
 export default function App() {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(getIsRefreshing);
   useEffect(() => {
     dispatch(refreshUser());
     dispatch(getGifts());

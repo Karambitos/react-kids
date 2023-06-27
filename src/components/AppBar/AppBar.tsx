@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './AppBar.module.scss';
 import Modal from '../Modal/Modal';
 import { useSelector } from 'react-redux';
@@ -9,28 +10,29 @@ import { useMediaQuery } from 'react-responsive';
 import SVGComponent from '../../assets/exitIcon';
 import { useState } from 'react';
 import ModalLogout from '../ModalLogout/ModalLogout';
+import { log } from 'console';
 
 export default function AppBar() {
-  const isLoggedIn = useSelector(getIsAuth);
-  const email = useSelector(getEmail);
-  const [showModal, setShowModal] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const isLoggedIn:boolean = useSelector(getIsAuth);
+  const email:string = useSelector(getEmail);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
-  const symbolsBeforeAt = email?.split('@')[0];
+  const symbolsBeforeAt:string = email?.split('@')[0];
 
-  const colors = ['#091f8b', '#0000FF', '#7a3bba', '#9d1f29', '#efbb43'];
+  const colors:string[] = ['#091f8b', '#0000FF', '#7a3bba', '#9d1f29', '#efbb43'];
 
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  const randomColor:string = colors[Math.floor(Math.random() * colors.length)];
 
-  const handleClick = () => {
+  const handleClick = ():void => {
     setShowModal(!showModal);
   };
 
-  const handleMenuToggle = () => {
-    setShowMenu(!showMenu);
+  const handleMenuToggle = ():void => {
+    setShowMenu(!showMenu);    
   };
 
-  const handleModalToggle = () => {
+  const handleModalToggle = ():void => {
     setShowModal(!showModal);
   };
 

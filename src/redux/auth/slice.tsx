@@ -1,23 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUser, logoutUser, registerUser, refreshUser } from './operations';
 
+
+interface InitialState {
+  user: {
+    email: string,
+    id: string,
+    balance: number,
+  },
+  rewards: {
+    rewardsGained: number,
+    rewardsPlanned: number,
+  },
+  token: null | string,
+  isLoading: boolean,
+  isRefreshing: boolean,
+  error: null | string,
+}
+
+const initialState: InitialState = {
+  user: {
+    email: '',
+    id: '',
+    balance: 0,
+  },
+  rewards: {
+    rewardsGained: 0,
+    rewardsPlanned: 0,
+  },
+  token: null,
+  isLoading: true,
+  isRefreshing: false,
+  error: null,
+}
+
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    user: {
-      email: '',
-      id: '',
-      balance: 0,
-    },
-    rewards: {
-      rewardsGained: 0,
-      rewardsPlanned: 0,
-    },
-    token: null,
-    isLoading: true,
-    isRefreshing: false,
-    error: null,
-  },
+  initialState,
   reducers: {
     updatedBalance(state, action) {
       state.user.balance = action.payload.updatedBalance;
